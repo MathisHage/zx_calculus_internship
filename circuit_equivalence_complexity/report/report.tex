@@ -158,6 +158,13 @@
 % *** MATH PACKAGES ***
 %
 \usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{amsthm}
+\newtheorem{definition}{Definition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{theorem}{Theorem}
+
 \usepackage{braket}
 % A popular package from the American Mathematical Society that provides
 % many useful and powerful commands for dealing with mathematics.
@@ -176,7 +183,8 @@
 
 % *** SPECIALIZED LIST PACKAGES ***
 %
-%\usepackage{algorithmic}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
 % algorithmic.sty was written by Peter Williams and Rogerio Brito.
 % This package provides an algorithmic environment fo describing algorithms.
 % You can use the algorithmic environment in-text or within a figure
@@ -567,7 +575,62 @@ Now that the prerequisites have been introduced, we can dive into the heart of t
 
 \subsection{\textsc{NP}-membership}
 
+\subsection{\textsc{NP}-hardness}
 
+When $\alpha$ is arbitrary, we prove \textsc{NP}-hardness by a reduction from \textsc{SUBSET-SUM}. We start by reminding its definition.
+\begin{definition}{\textsc{SUBSET-SUM}}{}
+	$$
+	\textsc{SUBSET-SUM} := \{(S, t) \; | \; S \subset \mathbb{N} \text{ is finite, } t \in \mathbb{N} \text{, and } \exists \; U \subseteq S : \sum_{s \in U} s = t \}.
+	$$ 
+\end{definition}
+
+Now, we claim that $\textsc{SUBSET-SUM} \leq_p \textsc{ZX-REWRITE}$.
+
+\begin{proof}
+	Let the function $f: \textsc{SUBSET-SUM} \rightarrow \textsc{ZX-REWRITE}$ be defined as follows :
+
+	\begin{algorithm}[!ht]
+	    \caption{Reduction from $\textsc{SUBSET-SUM}$ to $\textsc{ZX-REWRITE}$}
+	    \begin{algorithmic}[1]
+		\Function{$f$}{$\left< S, t \right>$}
+		    \State Let $n = |S|$
+		    \If{$t > \sum_{s \in S} s$}
+		        \State Let $D_1$ be a single $0$-phase green spider with one input and one output.
+		        \State Let $D_2$ be a wire containing two $0$-phase green spiders.
+		        \State \textbf{return} $\langle D_1, D_2, 0 \rangle$
+		    \Else
+		        \State $\mathcal{N} \gets \sum_{s \in S} s$
+		        \State Let $D_1$ consist of $n$ green spiders disposed vertically, with the $i^{\text{th}}$ spider having phase $\frac{s_i}{\mathcal{N}}$ for $s_i \in S$.
+		        \State Connect the left side of each spider in $D_1$ to a new $0$-phase green spider (one wire each), and the right side to another $0$-phase green spider (one wire each).
+		        \State Let $D_2$ consist of two green spiders linked with $n$ wires, where the left spider has phase $\frac{\mathcal{N}-t}{\mathcal{N}}$ and the right spider has phase $\frac{t}{\mathcal{N}}$.
+		        \State \textbf{return} $\langle D_1, D_2, n \rangle$
+		    \EndIf
+		\EndFunction
+	    \end{algorithmic}
+	\end{algorithm}
+
+Clearly, this algorithm runs in time $\mathcal{O}(n)$ where $n := \lvert S \rvert $, and hence $f$ is a polynomial time computable function. Now, we need to show :
+$$
+\left< S, t \right> \in \textsc{SUBSET-SUM} \Leftrightarrow f(\left< S, t \right> ) = \left< D_1, D_2, k \right> \in \textsc{ZX-REWRITE}.
+$$
+
+Clearly if $t > \sum_{s \in S} s$, the reduction outputs a string that is not in \textsc{ZX-REWRITE}, as it is impossible to go from $D_1$ to $D_2$ in $k=0$ steps (they are not equal).
+
+Otherwise, $k = n$ and :
+\begin{itemize}
+	\item[($\Rightarrow$)] $\left< S, t \right> \in \textsc{SUBSET-SUM} \implies \; \exists \; U \subseteq S$ s.t. $ \sum_{s \in U} s = t$. Start with $D_2$. By fusing every spider of the form $\frac{s}{\mathcal{N}}, s \in U$ with the right 0-phase spider, its phase becomes $\sum_{s \in U} \frac{s}{\mathcal{N}} = \frac{1}{\mathcal{N}} \sum_{s \in U} s = \frac{t}{\mathcal{N}}$. By fusing the remaining ones with the left 0-phase spider, its phase becomes $\sum_{s \notin U} s = \frac{\mathcal{N} - t}{\mathcal{N}}$. Hence we have recovered $D_2$, in $n$ steps exactly.
+	\item[($\Leftarrow$)] It is possible to go from $D_1$ to $D_2$ in $n$ steps. Consider such a sequence of $n$ steps. As we go down from $n+2$ spiders to only $2$, and that we only have green spiders, we can only use spider fusion : using another rule would cause us to "loose time" while we only have $n$ moves allowed. Therefore, by creating a set $U$ containing all  $s \in S$ such that node $\frac{s_i}{\mathcal{N}}$ was slid to the right, we have that $\left< S, t \right> \in \textsc{SUBSET-SUM}$.
+\end{itemize}
+
+
+Therefore, $f$ is a valid reduction, which proves $\textsc{SUBSET-SUM} \leq_p \textsc{ZX-REWRITE}$.
+
+\end{proof}
+
+\begin{corollary}
+	\textsc{ZX-REWRITE} is \textsc {NP}-hard.
+	
+\end{corollary}
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
