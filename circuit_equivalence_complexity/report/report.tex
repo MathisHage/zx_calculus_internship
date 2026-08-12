@@ -673,7 +673,7 @@ Clearly if $t > \sum_{s \in S} s$, the reduction outputs a string that is not in
 
 Otherwise, $k = n$ and :
 \begin{itemize}
-	\item[($\Rightarrow$)] $\left< S, t \right> \in \textsc{SUBSET-SUM} \implies \; \exists \; U \subseteq S$ s.t. $ \sum_{s \in U} s = t$. Start with $D_2$. By fusing every spider of the form $\frac{s}{\mathcal{N}}, s \in U$ with the right 0-phase spider, its phase becomes $\sum_{s \in U} \frac{s}{\mathcal{N}} = \frac{1}{\mathcal{N}} \sum_{s \in U} s = \frac{t}{\mathcal{N}}$. By fusing the remaining ones with the left 0-phase spider, its phase becomes $\sum_{s \notin U} s = \frac{\mathcal{N} - t}{\mathcal{N}}$. Hence we have recovered $D_2$, in $n$ steps exactly.
+	\item[($\Rightarrow$)] $\left< S, t \right> \in \textsc{SUBSET-SUM} \implies \; \exists \; U \subseteq S$ s.t. $ \sum_{s \in U} s = t$. Start with $D_1$. By fusing every spider of the form $\frac{s}{\mathcal{N}}, s \in U$ with the right 0-phase spider, its phase becomes $\sum_{s \in U} \frac{s}{\mathcal{N}} = \frac{1}{\mathcal{N}} \sum_{s \in U} s = \frac{t}{\mathcal{N}}$. By fusing the remaining ones with the left 0-phase spider, its phase becomes $\sum_{s \notin U} s = \frac{\mathcal{N} - t}{\mathcal{N}}$. Hence we have recovered $D_2$, in $n$ steps exactly.
 	\item[($\Leftarrow$)] It is possible to go from $D_1$ to $D_2$ in $n$ steps. Consider such a sequence of $n$ steps using only the fusion rule. Hence we necessarily had to fuse the $n$ center spiders one by one to the left or to the right. By creating a set $U$ containing all  $s \in S$ such that node $\frac{s_i}{\mathcal{N}}$ was fused to the right, we have that $\left< S, t \right> \in \textsc{SUBSET-SUM}$.
 \end{itemize}
 
