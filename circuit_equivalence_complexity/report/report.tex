@@ -443,7 +443,7 @@ The abstract goes here.
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-ZX-Calculus, Proof Complexity, Circuit Obfuscation.
+ZX-Calculus, Proof Complexity, \textsc{NP}-hardness, \textsc{NP}, Reduction, Circuit Obfuscation.
 \end{IEEEkeywords}
 
 
@@ -488,7 +488,7 @@ $$
 \textsc{ZX-REWRITE} := \{ (D_1, D_2, k) \; | \; D_1, D_2 \text{ are ZX-diagrams s.t. the equality } D_1=D_2 \text{ can be proven true in at most } k \text{ steps}\}.
 $$ 
 
-What is its complexity class ? This problem not only stems from ZX-calculus theory, but also from a general proof complexity setting. 
+What is its complexity class ? This problem not only stems from ZX-calculus theory, but also from a general proof complexity setting. We note that $k$ is written in unary. 
 % You must have at least 2 lines in the paragraph with the drop letter
 % (should never be an issue)
 
@@ -569,9 +569,12 @@ There also is a set of practical "meta"-rules, which can be derived from the abo
 
 Note that we work with unnormalized quantum states, which is not an issue.
 
-\section{Results}
+
+\section{Arbitrary rational phases}
 
 Now that the prerequisites have been introduced, we can dive into the heart of the problem. Intuitively, even by knowing that two diagrams represent the same linear map, the problem of finding a sequence of ZX-rules of length at most $k$ to go from one to the other seems like a very difficult task. Even though a verifier running in polytime can be found relatively easily, hence proving \textsc{NP}-membership of the language \textsc{ZX-REWRITE}, it is much more complicated to prove the suspected NP-hardness. In fact, unlike problems that require checking if two diagrams are equal for example, we have to focus on the \textit{topology} of the diagrams rather than on the transformation they represent.
+
+We limit the phases to be rational to be able to have finite presentation of numbers to pass the verifier.
 
 \subsection{\textsc{NP}-membership}
 
@@ -613,7 +616,7 @@ In this first tentative, we conjecture that the hardness of the problem partiall
 
 Define the fusion-rule-only version of the language :
 $$
-\textsc{ZX-REWRITE}_F := \{ \left< D_1, D_2, k \right> \in \textsc{ZX-REWRITE}\; | \; \text{we can go from } D_1 \text{ to } D_2 \text{ using the fusion rule only}\}.
+\textsc{ZX-REWRITE}_F := \{ \left< D_1, D_2, k \right> \in \textsc{ZX-REWRITE}\; | \; \text{we can go from } D_1 \text{ to } D_2 \text{ using only the fusion rule at most } k \text{ times}\}.
 $$ 
 
 We can in fact prove \textsc{NP}-hardness of this language by a reduction from \textsc{SUBSET-SUM}. We start by reminding its definition.
@@ -688,6 +691,17 @@ This however does not prove \textsc{NP}-hardness of the original \textsc{ZX-REWR
 	\textsc{ZX-REWRITE} is \textsc {NP}-hard.
 	
 \end{corollary}
+
+\section{Clifford Fragment}
+
+We now limit ourselves to the \textit{Clifford fragment} of quantum mechanics, i.e. the diagrams containing only phases that are multiples of $\pi / 2$. Intuitively, the problem seems at most as hard as the case with only rational phases : not only is the number of possible phases now discrete ($\alpha \in \{0, \pi / 2, \pi, 3 \pi / 2\}$), but the set of rules is also reduced (the rules described in fig. (\ref{fig:zx_rules}) now suffice). Let $\textsc{ZX-REWRITE}_{CF}$ be the problem constrained to the Clifford fragment.
+
+It is not too hard to see that the problem is in \textsc{NP} : with a proper labelling of the possible phases, alg. (\ref{alg:zxr_verifier}) still works as a polytime verifier for $\textsc{ZX-REWRITE}_{CF}$. The more interesting question would be to know if this problem could be in \textsc{P}.
+
+\subsection{Upper Bound On $k$}
+
+We can make use of existing work to show that there is an upper bound of the number of steps we can use to prove an equality between two diagrams.
+
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
 % For figures, \caption should occur after the \includegraphics.
