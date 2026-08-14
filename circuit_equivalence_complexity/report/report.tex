@@ -610,8 +610,6 @@ We limit the phases to be rational to be able to have finite presentation of num
 
 \subsection{\textsc{NP}-hardness}
 
-\subsubsection{First tentative}
-
 In this first tentative, we conjecture that the hardness of the problem partially comes from the fact that the phases of the spiders can be arbitrary. In fact, it seems very difficult for an algorithm to specifically use the "unfusion" rule to split a phase $\gamma \in [0, 2 \pi[$ into $\gamma = \alpha + \beta$.
 
 Define the fusion-rule-only version of the language :
@@ -691,6 +689,32 @@ This however does not prove \textsc{NP}-hardness of the original \textsc{ZX-REWR
 	\textsc{ZX-REWRITE} is \textsc {NP}-hard.
 	
 \end{corollary}
+
+\subsection{Comment on the introduction of real phases}
+
+This part was based on a course by Olivier Bournez \cite{bournez2013bss}.
+
+When dealing with real numbers, one can work in the context of Blum-Shub-Smale (BSS) machines \cite{wiki:bss_machine}. A BSS-machine is a computation model that is analogous to a Turing machine but designed specifically to work with real numbers. Typically, the tape of 0's and 1's is replaced by a tape (infinite vector) of real numbers. Then, the machine can perform different types of operations on elements of the tape.
+
+Let us limit ourselves to \textit{linear} BSS-machines, i.e. that can only perform actions among $(., +, -, =)$ where $"."$ denotes mulitplication by a scalar, and $"="$ means testing if some value is equal to zero. In this case, we get the desirable result that when considering only boolean inputs, a linear BSS-machine is equivalent to a Turing machine, in the sense that :
+$$
+\begin{aligned}
+	\textsc{P} &= \text{BP}(\textsc{P}^=_\text{lin}),\\
+	\textsc{NP} &= \text{BP}(\textsc{NP}^{=}_\text{lin}).
+\end{aligned}
+$$ 
+
+Here, we denote complexity classes of linear BSS-machines with the superscript $"="$ and the subscript $"\text{lin}"$. Moreover, $\text{BP}(\mathcal{C})$ denotes the  \textit{Boolean Part} of a complexity class $\mathcal{C}$ :
+$$
+\text{BP}(\mathcal{C}) := \{L \cap \{0, 1\}^* \: | \: L \in \mathcal{C}\}.
+$$
+
+In this setting, \textsc{SUBSET-SUM} (called \textsc{KNAPSACK} in \cite{bournez2013bss}) is still also $\textsc{NP}^{=}_\text{lin}$-hard, and we could analogously define a reduction from it to our \textsc{ZX-REWRITE} problem.
+
+We note that to this day, the interpretation of this result is different, in the sense that it is already known that :
+$$
+\textsc{P}^=_\text{lin} \neq \textsc{NP}^{=}_\text{lin}. \quad \cite{bournez2013bss}
+$$ 
 
 \section{Clifford Fragment}
 
