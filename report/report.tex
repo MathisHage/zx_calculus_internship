@@ -1,0 +1,918 @@
+              
+                %% bare_jrnl.tex
+%% V1.4b
+%% 2015/08/26
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8b or later) with an IEEE
+%% journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/pkg/ieeetran
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall the IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. The IEEE's font choices and paper sizes can   ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+% Please refer to your journal's instructions for other
+% options that should be set.
+\documentclass[journal,onecolumn]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/pkg/ifpdf
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+
+
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of the IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/pkg/cite
+% The documentation is contained in the cite.sty file itself.
+
+
+
+
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/pkg/graphicx
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/pkg/epslatex
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). The IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+
+
+
+
+% *** MATH PACKAGES ***
+%
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{claim}[theorem]{Claim}
+
+\usepackage{braket}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics.
+%
+% Note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/amsmath
+
+
+
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as the IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/pkg/algorithms
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/pkg/algorithmicx
+
+
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+%\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/array
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/pkg/subfig
+
+
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure.
+% Be aware that LaTeX2e kernels dated 2015 and later have fixltx2e.sty's
+% corrections already built into the system in which case a warning will
+% be issued if an attempt is made to load fixltx2e.sty as it is no longer
+% needed.
+% The latest version and documentation can be found at:
+% http://www.ctan.org/pkg/fixltx2e
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/pkg/stfloats
+% Do not use the stfloats baselinefloat ability as the IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that the IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as the IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/pkg/dblfloatfix
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/pkg/endfloat
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/pkg/url
+% Basically, \url{my_url_here}.
+
+
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+\title{On the Hardness of Proving a ZX-Diagram Equality}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Mathis~Hage,~\IEEEmembership{MSc Student at EPFL, Intern at Geneva University}}
+        % <-this % stops a space
+
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2015 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+After several years of studies, the ZX-calculus language for diagrammatic reasoning on qubits has finally seen emergence of rulesets ensuring completeness for all sorts of fragments of quantum mechanics. Even though we therefore know that we can always prove or disprove an equality between two ZX-diagrams using only the rules of ZX-calculus, an interesting question could be to ask what is the number of rules necessary to do so. This paper exhibits the difficulty of this question, lying mostly in proof complexity theory. Despite this, after some work to prove NP-membership, I still present serious arguments for NP-hardness of the problem when constrained to rational phases. An extension is then made to the real phases case in the context of the Blum-Shub-Smale Model, before ending by a hypothesis regarding the difficulty of the problem constrained to the Clifford fragment.
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+Quantum Computing, ZX-Calculus, Proof Complexity, \textsc{NP}-hardness, \textsc{NP}, Reduction, Circuit Obfuscation, Blum-Shub-Smale Model.
+\end{IEEEkeywords}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+
+\section{Introduction}
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps.
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by the IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+\IEEEPARstart{I}n the last decades, \textit{the ZX-Calculus} language for diagrammatic reasoning on qubits has received a lot of attention for the possibilities it offers in quantum computing. For example, one can use this language to reduce the T-gate count in a quantum circuit. Over the years, the theory behind the ZX-Calculus was hence refined, up to achieving a \textit{complete} form of the langugage \cite{ZXcompleteness}.
+
+However, a lot of important matters linked to the ZX-Calculus are hard. The most famous one is the circuit extraction problem, i.e. the problem consisting of extracting a quantum circuit from a ZX-Diagram. Even though some efficient algorithms exist in some specific cases, for example with diagrams presenting mathematical structures called \textit{flows} (see for example \cite{ZXflowEfficient}), circuit extraction remains \#P-complete in the general case \cite{ZXSharpHard}.
+
+In this case study, we look at another aspect of the ZX-Calculus. We said earlier that this language is \textit{complete} : this means that two diagrams are equal if and only if there is a sequence of rules (allowed by the language) transforming one diagram into the other. Therefore it is always possible to go from one diagram to another if they represent the same linear map on qubits. An interesting question can now be asked : what is the \textit{number of steps} needed to prove an equality between two diagrams ? More specifically, let the language :
+$$
+\textsc{ZX-REWRITE} := \{ (D_1, D_2, k) \; | \; D_1, D_2 \text{ are ZX-diagrams s.t. the equality } D_1=D_2 \text{ can be proven true in at most } k \text{ steps}\}.
+$$ 
+
+What is its complexity class ? This problem not only stems from ZX-calculus theory, but also from a general proof complexity setting. We note that $k$ is written in unary. 
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+
+\section{Requirements}
+
+\subsection{ZX-Calculus}
+
+This part is largely based on \textit{ZX-calculus for the working quantum computer scientist} p. 1-34. \cite{ZXCourse}. We avoid redundant citation in the rest of this section.
+
+ZX-calculus is a graphical way to represent and reason about linear maps between qubits. A ZX-diagram represents qubits flowing through wires, hitting some nodes, which are linear maps acting on them, and at some point coming out. Such a diagram is composed of multiple instances of a specific set of \textit{generators}.
+
+\subsubsection{Generators}
+
+The first generators are the \textit{spiders}. These are nodes that can be green or red, and take a parameter $\alpha$. As in \cite{ZXCourse}, our figures use grey spiders instead of red ones, and white spiders instead of green ones. A green (white) node with $n$ input wires (i.e. connected to the left of the node), $m$ output wires (i.e. connected to the right of the node) and parameter $\alpha$, as shown in fig. (\ref{fig:zx_green_spider}),
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.2\textwidth]{res/zx_green_spider.png}
+\caption{Green Spider with $n$ inputs, $m$ outputs, and parameter $\alpha$ (taken from \cite{wiki:zx_calculus})}
+\label{fig:zx_green_spider}
+\end{figure}
+
+corresponds to the linear map :
+$$\ket{\overbrace{0 \cdots 0}^m} \bra{\overbrace{0 \cdots 0}^n} + e^{i \alpha} \ket{\overbrace{1 \cdots 1}^m} \bra{\overbrace{1 \cdots 1}^n}.$$
+If the node is red (grey), it corresponds to the linear map :
+$$\ket{\overbrace{+ \cdots +}^m} \bra{\overbrace{+ \cdots +}^n} + e^{i \alpha} \ket{\overbrace{- \cdots -}^m} \bra{\overbrace{- \cdots -}^n}.$$
+
+Here are a few examples :
+\begin{itemize}
+\item A green spider with 0 inputs and 1 output : $\ket{0} + e^{i \alpha} \ket{1}$ ;
+\item The same spider but red and parameter $\alpha = 0$ corresponds to $\ket{0}$, while with $\alpha = \pi$ it corresponds to $\ket{1}$.
+\item A green spider with one input and one output corresponds to the rotation matrix (on the Bloch sphere) by an angle $\alpha$ around the $Z$ axis :
+\end{itemize}
+$$R_Z(\alpha) = \begin{pmatrix} 1 & 0 \\ 0 & e^{i \alpha} \end{pmatrix}$$
+
+There are also other generators. First, the SWAP gate in fig. (\ref{fig:swap_cup_cap}) (from quantum computing theory), simply represented as crossing wires.
+
+\begin{figure*}[h]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[height=0.7in]{res/swap.png}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=0.7in]{res/cup_cap.png}
+    \end{subfigure}
+    \caption{The SWAP (a) and the cup and cap (b) generators.}
+    \label{fig:swap_cup_cap}
+\end{figure*}
+
+One can freely slide spiders along these crossing wires. It is clear from this visual representation that SWAP is self-inverse : try composing two SWAP's side by side, you will notice that both qubits end up in their original lane.
+
+Moreover, two other generators are of fundamental importance, namely the \textit{cup} and the \textit{cap} (respectively) drawn in fig. (\ref{fig:swap_cup_cap}). Notice how they represent the Bell state and the Bell effect. Here also, a spider can freely move on a cup or a cap.\\
+
+\subsubsection{Only connectivity matters}
+
+Because of the fact that the spiders are symmetric, and using the SWAP, cups and caps generators, we arrive at the point that makes ZX-calculus very interesting : this can be summarized by the sentence \textit{"only connectivity matters"}. In fact, we can bend wires in any way we like, see them either as inputs or outputs of spiders, this doesn't change the overall linear map represented by the ZX-diagram as long as we dont change the order of the inputs and outputs of the whole diagram.
+
+ZX-calculus is universal, meaning it can represent any linear map.\\
+
+\subsubsection{Rules}
+
+When working with ZX-diagrams, and in particular when trying to simplify them, one can make use of a set of rules to do so. These rules are summarized in fig. (\ref{fig:zx_rules}). They do not change the linear map when used.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{res/zx_rules.png}
+\caption{The rules of ZX-calculus making it complete for the Clifford fragment, namely : \textit{spider fusion} ($f$), \textit{hadamard} ($h$, $hh$), \textit{identity} ($id$), \textit{commute} ($\pi$), \textit{copy} ($c$), \textit{bialgebra} ($b$). Note that the square box represents the hadamard unitary, which can be built from spiders as well.}
+\label{fig:zx_rules}
+\end{figure}
+
+There also is a set of practical "meta"-rules, which can be derived from the above ones. While we do not detail them all, we simply mention that the rules of fig. (\ref{fig:zx_rules}) all hold with the colors interchanged, and with the inputs / outputs interchanged.\\
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\subsubsection{Completeness} The ZX-Calculus is \textit{complete}, meaning we can prove or disprove any equality between diagrams by using only the rules of the language. The rules of fig. (\ref{fig:zx_rules}) makes it complete for the \textit{Clifford fragment}, meaning when the phases are multiples of $\pi / 2$. For completeness when the phases are arbitrary, we use the rules described in \cite{ZXcompleteness}, page 34, fig. 6.
+
+Note that we work with unnormalized quantum states, which is not an issue.
+
+
+\section{Arbitrary rational phases}
+
+Now that the prerequisites have been introduced, we can dive into the heart of the problem. Intuitively, even by knowing that two diagrams represent the same linear map, the problem of finding a sequence of ZX-rules of length at most $k$ to go from one to the other seems like a very difficult task. Even though a verifier running in polytime can be found relatively easily, hence proving \textsc{NP}-membership of the language \textsc{ZX-REWRITE}, it is much more complicated to prove the suspected NP-hardness. In fact, unlike problems that require checking if two diagrams are equal for example, we have to focus on the \textit{topology} of the diagrams rather than on the transformation they represent.
+
+To be able to conveniently work in the standard Turing machines setting, we constrain ourselves to having only rational phases, as for them to have a finite presentation to pass the verifier.
+
+\subsection{\textsc{NP}-membership}
+
+\begin{theorem}{}{}
+	\textsc{ZX-REWRITE} is in \textsc{NP}.	
+\end{theorem}
+
+\begin{proof}
+	We claim that alg. (\ref{alg:zxr_verifier}) constitutes a valid polytime verifier for \textsc{ZX-REWRITE}.	In fact, this algorithm simply applies the rules described by the certificate (there should 	be less than $k$ of them) to the first diagram, and accepts if we recover the second one exactly. A few remarks to ensure that this works :
+	\begin{itemize}
+		\item Phases are rational : they can perfectly be passed as inputs.
+    		\item No rule makes the number of nodes explode exponentially.
+    		\item We can easily adopt a naming convention for the spiders and the wires as well as a convention on how to change the labels when using a rule. For example, each time a spider is created, we can choose to set its label to be the max of the existing labels $+ 1$. This way the certificate can coherently describe how to use each rule, and be understood by the verifier.
+	\end{itemize}
+
+\begin{algorithm}[H]
+\caption{Verifier $V$}
+\label{alg:zxr_verifier}
+\hspace*{\algorithmicindent} \textbf{Input:} $\langle D_1, D_2, k, C \rangle$
+\begin{algorithmic}[1]
+\State Parse $C$ as $\langle R, L \rangle = \left\langle (r_1, \dots, r_n), (l_1, \dots, l_n) \right\rangle$ where $r_i$ is a rule to apply, and $l_i$ contains the details on how to apply it: for example for the fusion rule, $l_i$ would contain the two vertices to fuse, and for the other direction (un-fusion), it would contain the spider to unfuse, how to split its phase, and how to spread the wires among the two new spiders.
+\If{$n > k$}
+    \State Reject.
+\EndIf
+\State Otherwise, $D \gets D_1$
+\For{$i = 1, \dots, n$}
+    \State $D \gets D \text{ with rule } r_i \text{ applied}$
+\EndFor
+\State Output \textbf{true} if and only if $D = D_2$.
+\end{algorithmic}
+\end{algorithm}
+
+\end{proof}
+
+\subsection{\textsc{NP}-hardness}
+
+In this proof tentative, we conjecture that the hardness of the problem partially comes from the fact that the phases of the spiders can be arbitrary. In fact, it seems very difficult for an algorithm to specifically use the "unfusion" rule to split a phase $\gamma \in \{x \in \mathbb{Q} \: | \: 0 \leq x < 2\pi\}$ into $\gamma = \alpha + \beta$.
+
+Define the fusion-rule-only version of the language :
+$$
+\textsc{ZX-REWRITE}_F := \{ \left< D_1, D_2, k \right> \in \textsc{ZX-REWRITE}\; | \; \text{we can go from } D_1 \text{ to } D_2 \text{ using only the fusion rule at most } k \text{ times}\}.
+$$ 
+
+We can in fact prove \textsc{NP}-hardness of this language by a reduction from \textsc{SUBSET-SUM}. We start by reminding its definition.
+\begin{definition}{\textsc{SUBSET-SUM}}{}
+	$$
+	\textsc{SUBSET-SUM} := \{(S, t) \; | \; S \subset \mathbb{N} \text{ is finite, } t \in \mathbb{N} \text{, and } \exists \; U \subseteq S : \sum_{s \in U} s = t \}.
+	$$ 
+\end{definition}
+
+\begin{theorem}{}{}
+$\textsc{SUBSET-SUM} \leq_p \textsc{ZX-REWRITE}_F$.
+\end{theorem}
+
+\begin{proof}
+	Consider the function $f: \textsc{SUBSET-SUM} \rightarrow \textsc{ZX-REWRITE}_F$ computed by alg. (\ref{alg:ss_to_zxr}).
+
+	\begin{algorithm}[!ht]
+	    \caption{Reduction from $\textsc{SUBSET-SUM}$ to $\textsc{ZX-REWRITE}_F$}
+	    \label{alg:ss_to_zxr}
+	    \begin{algorithmic}[1]
+		\Function{$f$}{$\left< S, t \right>$}
+		    \State Let $n = |S|$
+		    \If{$t > \sum_{s \in S} s$}
+		        \State Let $D_1$ be a single $0$-phase green spider with one input and one output.
+		        \State Let $D_2$ be a wire containing two $0$-phase green spiders.
+		        \State \textbf{return} $\langle D_1, D_2, 0 \rangle$
+		    \Else
+		        \State $\mathcal{N} \gets \sum_{s \in S} s$
+		        \State Create $D_1$ and $D_2$ as shown in fig. (\ref{fig:reduction_diagrams}).
+		        \State \textbf{return} $\langle D_1, D_2, n \rangle$
+		    \EndIf
+		\EndFunction
+	    \end{algorithmic}
+	\end{algorithm}
+
+\begin{figure*}[h]
+    \centering
+    \begin{subfigure}[t]{0.3\textwidth}
+        \centering
+        \includegraphics[height=1.3in]{res/reduction_d1.png}
+    \end{subfigure}%
+    ~ 
+    \begin{subfigure}[t]{0.5\textwidth}
+        \centering
+        \includegraphics[height=0.8in]{res/reduction_d2.png}
+    \end{subfigure}
+    \caption{Diagrams created by the reduction in alg. (\ref{alg:ss_to_zxr}). The three dots in $D_2$ indicate $n$ wires.}
+    \label{fig:reduction_diagrams}
+\end{figure*}
+
+Clearly, this algorithm runs in time $\mathcal{O}(n)$ where $n := \lvert S \rvert $, and hence $f$ is a polynomial time computable function. Now, we need to show :
+$$
+\left< S, t \right> \in \textsc{SUBSET-SUM} \Leftrightarrow f(\left< S, t \right> ) = \left< D_1, D_2, k \right> \in \textsc{ZX-REWRITE}_F.
+$$
+
+Clearly if $t > \sum_{s \in S} s$, the reduction outputs a string that is not in $\textsc{ZX-REWRITE}_F$, as it is impossible to go from $D_1$ to $D_2$ in $k=0$ steps (they are not equal).
+
+Otherwise, $k = n$ and :
+\begin{itemize}
+	\item[($\Rightarrow$)] $\left< S, t \right> \in \textsc{SUBSET-SUM} \implies \; \exists \; U \subseteq S$ s.t. $ \sum_{s \in U} s = t$. Start with $D_1$. By fusing every spider of the form $\frac{s}{\mathcal{N}}, s \in U$ with the right 0-phase spider, its phase becomes $\sum_{s \in U} \frac{s}{\mathcal{N}} = \frac{1}{\mathcal{N}} \sum_{s \in U} s = \frac{t}{\mathcal{N}}$. By fusing the remaining ones with the left 0-phase spider, its phase becomes $\sum_{s \notin U} s = \frac{\mathcal{N} - t}{\mathcal{N}}$. Hence we have recovered $D_2$, in $n$ steps exactly.
+	\item[($\Leftarrow$)] It is possible to go from $D_1$ to $D_2$ in $n$ steps. Consider such a sequence of $n$ steps using only the fusion rule. Hence we necessarily had to fuse the $n$ center spiders one by one to the left or to the right. By creating a set $U$ containing all  $s \in S$ such that node $\frac{s_i}{\mathcal{N}}$ was fused to the right, we have that $\left< S, t \right> \in \textsc{SUBSET-SUM}$.
+\end{itemize}
+
+
+Therefore, $f$ is a valid reduction, which proves $\textsc{SUBSET-SUM} \leq_p \textsc{ZX-REWRITE}_F$.
+
+\end{proof}
+
+\begin{corollary}
+	$\textsc{ZX-REWRITE}_F$ is \textsc {NP}-hard.
+	
+\end{corollary}
+
+This however does not prove \textsc{NP}-hardness of the original \textsc{ZX-REWRITE}. In fact, the original problem contains much more rules to modify a diagram, which, in the second part of the proof, could allow to go from $D_1$ to $D_2$ without using only the fusion rule. Therefore, we must argue that a valid sequence of $n$ steps may only contain the fusion rule to be able to go from $D_1$ to $D_2$, or find a counterexample, which would invalidate the reduction.
+
+We argue the former : since we have to go from $n+2$ to $2$ spiders, we have to use (at some point) a rule reducing the number of spiders. However, taking a look at the ruleset \cite{ZXcompleteness} page 34, fig 6., we see that no rule other than spider fusion can get us closer to $D_2$ when applied. Hence we need to have $n$ fusion steps, as desired.
+
+\begin{claim}
+	\textsc{ZX-REWRITE} is \textsc{NP}-hard.
+\end{claim}
+
+\subsection{Comment on the introduction of real phases}
+
+This part was based on a course by Olivier Bournez \cite{bournez2013bss}.
+
+When dealing with real numbers, one can work in the context of Blum-Shub-Smale (BSS) machines \cite{wiki:bss_machine}. A BSS-machine is a computation model that is analogous to a Turing machine but designed specifically to work with real numbers. Typically, the tape of 0's and 1's is replaced by a tape (infinite vector) of real numbers. Then, the machine can perform different types of operations on elements of the tape.
+
+Let us limit ourselves to \textit{linear} BSS-machines, i.e. that can only perform actions among $(., +, -, =)$ where $"."$ denotes mulitplication by a scalar, and $"="$ means testing if some value is equal to zero. In this case, we get the desirable result that when considering only boolean inputs, a linear BSS-machine is equivalent to a Turing machine, in the sense that :
+$$
+\begin{aligned}
+	\textsc{P} &= \text{BP}(\textsc{P}^=_\text{lin}),\\
+	\textsc{NP} &= \text{BP}(\textsc{NP}^{=}_\text{lin}).
+\end{aligned}
+$$ 
+
+Here, we denote complexity classes of linear BSS-machines with the superscript $"="$ and the subscript $"\text{lin}"$. Moreover, $\text{BP}(\mathcal{C})$ denotes the  \textit{Boolean Part} of a complexity class $\mathcal{C}$ :
+$$
+\text{BP}(\mathcal{C}) := \{L \cap \{0, 1\}^* \: | \: L \in \mathcal{C}\}.
+$$
+
+In this setting, \textsc{SUBSET-SUM} (called \textsc{KNAPSACK} in \cite{bournez2013bss}) is still also $\textsc{NP}^{=}_\text{lin}$-hard, and we could analogously define a reduction from it to our \textsc{ZX-REWRITE} problem.
+
+We note that to this day, the interpretation of this result is different, in the sense that it is already known that :
+$$
+\textsc{P}^=_\text{lin} \neq \textsc{NP}^{=}_\text{lin}. \quad \cite{bournez2013bss}
+$$ 
+
+\section{Clifford Fragment}
+
+We now limit ourselves to the \textit{Clifford circuits}, i.e. the diagram will contain only phases that are multiples of $\pi / 2$, and will have as many outputs as they have inputs. Intuitively, the problem seems at most as hard as the case with only rational phases : not only is the number of possible phases now discrete ($\alpha \in \{0, \pi / 2, \pi, 3 \pi / 2\}$), but the set of rules is also reduced (the rules described in fig. (\ref{fig:zx_rules}) now suffice). Let $\textsc{ZX-REWRITE}_{CC}$ be the problem constrained to ZX-diagrams originating from Clifford circuits.
+
+It is not too hard to see that the problem is in \textsc{NP} : with a proper labelling of the possible phases, alg. (\ref{alg:zxr_verifier}) still works as a polytime verifier for $\textsc{ZX-REWRITE}_{CC}$. The more interesting question would be to know if this problem could be in \textsc{P}. It turns out this question is still very complicated : after careful thinking, it seems unlikely that a polytime algorithm could be found easily to decide this problem (unless $\textsc{P} = \textsc{NP}$): how could we know that a valid sequence of steps is minimal without enumerating them all ? In the meantime, one still needs to find a different reduction than the one used previously to prove \textsc{NP}-hardness. Unfortunately due to a lack of time, this has not been achieved, and no polytime verifier has been identified. We nevertheless state our hypothesis :
+
+\begin{hypothesis}
+	\textsc{ZX-REWRITE} is \textsc{NP}-hard.
+\end{hypothesis}
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that the IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% the IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+\section{Conclusion}
+To conclude this study, the matter of proving a ZX-diagram equivalence seems like a very hard problem. While membership to the \textsc{NP} class (or equivalent for real phases) can be shown after some work, \textsc{NP}-hardness remains much harder to prove. Even though I was able to exploit the difficulty of deciding phase splits to produce an arguably coherent reduction, the complexity of some of the ZX-rules and their large number makes it hard to formally prove that the reduction is correct. Clearly, adding the constraint of proof length $k$ to the problem of going from $D_1$ to $D_2$ causes a complete change of field : we go from having to prove that a path exist between two diagrams representing the same map, i.e. completeness, which has already been extensively studied, to having to prove in how much steps this can be done, which lies almost completely in general proof theory (and has not been covered so much in the context of ZX-calculus). An interesting point to focus on would be finding a solution to the restriction of my problem to the Clifford fragment : one could pinpoint where does the hardness of the problem could come from, and construct a reduction accordingly. Conversely, as this has been done numerous times for other aspects of the ZX-calculus such as circuit extraction, it would be unlikely but not too surprising to find a polytime algorithm solving the problem, invalidating my hypothesis.
+
+
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+\appendices
+
+
+% use section* for acknowledgment
+\section*{Acknowledgment}
+A special thanks to Matteo De Francesco, PhD. candidate at the university of Geneva, for supervising me during my internship, and coming up with the idea of the research problem. I am also very grateful to Professor Arnaud Casteigts, head of the ALGO lab at the university of Geneva, for accepting to have me as an intern. A final thank you to both of them as well as the whole team for all the priceless advice they gave me and the nice chats we had as well.
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{bibliography}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
