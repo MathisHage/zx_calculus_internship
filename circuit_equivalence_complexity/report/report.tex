@@ -161,9 +161,11 @@
 \usepackage{amsfonts}
 
 \usepackage{amsthm}
-\newtheorem{definition}{Definition}
-\newtheorem{corollary}{Corollary}
 \newtheorem{theorem}{Theorem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{claim}[theorem]{Claim}
 
 \usepackage{braket}
 % A popular package from the American Mathematical Society that provides
@@ -438,17 +440,13 @@
 % As a general rule, do not put math, special symbols or citations
 % in the abstract or keywords.
 \begin{abstract}
-The abstract goes here.
+After several years of studies, the ZX-calculus language for diagrammatic reasoning on qubits has finally seen emergence of rulesets ensuring completeness for all sorts of fragments of quantum mechanics. Even though we therefore know that we can always prove or disprove an equality between two ZX-diagrams using only the rules of ZX-calculus, an interesting question could be to ask what is the number of rules necessary to do so. This paper exhibits the difficulty of this question, lying mostly in proof complexity theory. Despite this, after some work to prove NP-membership, I still present serious arguments for NP-hardness of the problem when constrained to rational phases. An extension is then made to the real phases case in the context of the Blum-Shub-Smale Model, before ending by a hypothesis regarding the difficulty of the problem constrained to the Clifford fragment.
 \end{abstract}
 
 % Note that keywords are not normally used for peerreview papers.
 \begin{IEEEkeywords}
-ZX-Calculus, Proof Complexity, \textsc{NP}-hardness, \textsc{NP}, Reduction, Circuit Obfuscation.
+Quantum Computing, ZX-Calculus, Proof Complexity, \textsc{NP}-hardness, \textsc{NP}, Reduction, Circuit Obfuscation, Blum-Shub-Smale Model.
 \end{IEEEkeywords}
-
-
-
-
 
 
 % For peer review papers, you can put extra information on the cover
@@ -574,7 +572,7 @@ Note that we work with unnormalized quantum states, which is not an issue.
 
 Now that the prerequisites have been introduced, we can dive into the heart of the problem. Intuitively, even by knowing that two diagrams represent the same linear map, the problem of finding a sequence of ZX-rules of length at most $k$ to go from one to the other seems like a very difficult task. Even though a verifier running in polytime can be found relatively easily, hence proving \textsc{NP}-membership of the language \textsc{ZX-REWRITE}, it is much more complicated to prove the suspected NP-hardness. In fact, unlike problems that require checking if two diagrams are equal for example, we have to focus on the \textit{topology} of the diagrams rather than on the transformation they represent.
 
-We limit the phases to be rational to be able to have finite presentation of numbers to pass the verifier.
+To be able to conveniently work in the standard Turing machines setting, we constrain ourselves to having only rational phases, as for them to have a finite presentation to pass the verifier.
 
 \subsection{\textsc{NP}-membership}
 
@@ -585,6 +583,7 @@ We limit the phases to be rational to be able to have finite presentation of num
 \begin{proof}
 	We claim that alg. (\ref{alg:zxr_verifier}) constitutes a valid polytime verifier for \textsc{ZX-REWRITE}.	In fact, this algorithm simply applies the rules described by the certificate (there should 	be less than $k$ of them) to the first diagram, and accepts if we recover the second one exactly. A few remarks to ensure that this works :
 	\begin{itemize}
+		\item Phases are rational : they can perfectly be passed as inputs.
     		\item No rule makes the number of nodes explode exponentially.
     		\item We can easily adopt a naming convention for the spiders and the wires as well as a convention on how to change the labels when using a rule. For example, each time a spider is created, we can choose to set its label to be the max of the existing labels $+ 1$. This way the certificate can coherently describe how to use each rule, and be understood by the verifier.
 	\end{itemize}
@@ -610,7 +609,7 @@ We limit the phases to be rational to be able to have finite presentation of num
 
 \subsection{\textsc{NP}-hardness}
 
-In this first tentative, we conjecture that the hardness of the problem partially comes from the fact that the phases of the spiders can be arbitrary. In fact, it seems very difficult for an algorithm to specifically use the "unfusion" rule to split a phase $\gamma \in [0, 2 \pi[$ into $\gamma = \alpha + \beta$.
+In this proof tentative, we conjecture that the hardness of the problem partially comes from the fact that the phases of the spiders can be arbitrary. In fact, it seems very difficult for an algorithm to specifically use the "unfusion" rule to split a phase $\gamma \in \{x \in \mathbb{Q} \: | \: 0 \leq x < 2\pi\}$ into $\gamma = \alpha + \beta$.
 
 Define the fusion-rule-only version of the language :
 $$
@@ -681,14 +680,20 @@ Otherwise, $k = n$ and :
 
 Therefore, $f$ is a valid reduction, which proves $\textsc{SUBSET-SUM} \leq_p \textsc{ZX-REWRITE}_F$.
 
-This however does not prove \textsc{NP}-hardness of the original \textsc{ZX-REWRITE}. In fact, the original problem contains much more rules to modify a diagram, which, in the second part of the proof, could allow to go from $D_1$ to $D_2$ without using only the fusion rule. Therefore, we must argue that a valid sequence of $n$ steps may only contain the fusion rule to be able to go from $D_1$ to $D_2$, or find a counterexample, which would invalidate the reduction.
-
 \end{proof}
 
 \begin{corollary}
-	\textsc{ZX-REWRITE} is \textsc {NP}-hard.
+	$\textsc{ZX-REWRITE}_F$ is \textsc {NP}-hard.
 	
 \end{corollary}
+
+This however does not prove \textsc{NP}-hardness of the original \textsc{ZX-REWRITE}. In fact, the original problem contains much more rules to modify a diagram, which, in the second part of the proof, could allow to go from $D_1$ to $D_2$ without using only the fusion rule. Therefore, we must argue that a valid sequence of $n$ steps may only contain the fusion rule to be able to go from $D_1$ to $D_2$, or find a counterexample, which would invalidate the reduction.
+
+We argue the former : since we have to go from $n+2$ to $2$ spiders, we have to use (at some point) a rule reducing the number of spiders. However, taking a look at the ruleset \cite{ZXcompleteness} page 34, fig 6., we see that no rule other than spider fusion can get us closer to $D_2$ when applied. Hence we need to have $n$ fusion steps, as desired.
+
+\begin{claim}
+	\textsc{ZX-REWRITE} is \textsc{NP}-hard.
+\end{claim}
 
 \subsection{Comment on the introduction of real phases}
 
@@ -718,13 +723,13 @@ $$
 
 \section{Clifford Fragment}
 
-We now limit ourselves to the \textit{Clifford fragment} of quantum mechanics, i.e. the diagrams containing only phases that are multiples of $\pi / 2$. Intuitively, the problem seems at most as hard as the case with only rational phases : not only is the number of possible phases now discrete ($\alpha \in \{0, \pi / 2, \pi, 3 \pi / 2\}$), but the set of rules is also reduced (the rules described in fig. (\ref{fig:zx_rules}) now suffice). Let $\textsc{ZX-REWRITE}_{CF}$ be the problem constrained to the Clifford fragment.
+We now limit ourselves to the \textit{Clifford circuits}, i.e. the diagram will contain only phases that are multiples of $\pi / 2$, and will have as many outputs as they have inputs. Intuitively, the problem seems at most as hard as the case with only rational phases : not only is the number of possible phases now discrete ($\alpha \in \{0, \pi / 2, \pi, 3 \pi / 2\}$), but the set of rules is also reduced (the rules described in fig. (\ref{fig:zx_rules}) now suffice). Let $\textsc{ZX-REWRITE}_{CC}$ be the problem constrained to ZX-diagrams originating from Clifford circuits.
 
-It is not too hard to see that the problem is in \textsc{NP} : with a proper labelling of the possible phases, alg. (\ref{alg:zxr_verifier}) still works as a polytime verifier for $\textsc{ZX-REWRITE}_{CF}$. The more interesting question would be to know if this problem could be in \textsc{P}.
+It is not too hard to see that the problem is in \textsc{NP} : with a proper labelling of the possible phases, alg. (\ref{alg:zxr_verifier}) still works as a polytime verifier for $\textsc{ZX-REWRITE}_{CC}$. The more interesting question would be to know if this problem could be in \textsc{P}. It turns out this question is still very complicated : after careful thinking, it seems unlikely that a polytime algorithm could be found easily to decide this problem (unless $\textsc{P} = \textsc{NP}$): how could we know that a valid sequence of steps is minimal without enumerating them all ? In the meantime, one still needs to find a different reduction than the one used previously to prove \textsc{NP}-hardness. Unfortunately due to a lack of time, this has not been achieved, and no polytime verifier has been identified. We nevertheless state our hypothesis :
 
-\subsection{Upper Bound On $k$}
-
-We can make use of existing work to show that there is an upper bound of the number of steps we can use to prove an equality between two diagrams.
+\begin{hypothesis}
+	\textsc{ZX-REWRITE} is \textsc{NP}-hard.
+\end{hypothesis}
 
 % An example of a floating figure using the graphicx package.
 % Note that \label must occur AFTER (or within) \caption.
@@ -824,7 +829,7 @@ We can make use of existing work to show that there is an upper bound of the num
 
 
 \section{Conclusion}
-The conclusion goes here.
+To conclude this study, the matter of proving a ZX-diagram equivalence seems like a very hard problem. While membership to the \textsc{NP} class (or equivalent for real phases) can be shown after some work, \textsc{NP}-hardness remains much harder to prove. Even though I was able to exploit the difficulty of deciding phase splits to produce an arguably coherent reduction, the complexity of some of the ZX-rules and their large number makes it hard to formally prove that the reduction is correct. Clearly, adding the constraint of proof length $k$ to the problem of going from $D_1$ to $D_2$ causes a complete change of field : we go from having to prove that a path exist between two diagrams representing the same map, i.e. completeness, which has already been extensively studied, to having to prove in how much steps this can be done, which lies almost completely in general proof theory (and has not been covered so much in the context of ZX-calculus). An interesting point to focus on would be finding a solution to the restriction of my problem to the Clifford fragment : one could pinpoint where does the hardness of the problem could come from, and construct a reduction accordingly. Conversely, as this has been done numerous times for other aspects of the ZX-calculus such as circuit extraction, it would be unlikely but not too surprising to find a polytime algorithm solving the problem, invalidating my hypothesis.
 
 
 
@@ -850,7 +855,7 @@ The conclusion goes here.
 
 % use section* for acknowledgment
 \section*{Acknowledgment}
-
+A special thanks to Matteo De Francesco, PhD. candidate at the university of Geneva, for supervising me during my internship, and coming up with the idea of the research problem. I am also very grateful to Professor Arnaud Casteigts, head of the ALGO lab at the university of Geneva, for accepting to have me as an intern. A final thank you to both of them as well as the whole team for all the priceless advice they gave me and the nice chats we had as well.
 
 % Can use something like this to put references on a page
 % by themselves when using endfloat and the captionsoff option.
