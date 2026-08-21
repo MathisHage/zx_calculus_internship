@@ -1,8 +1,8 @@
 out/
-circuit_equivalence_complexity/report/report.aux
-circuit_equivalence_complexity/report/report.bbl
-circuit_equivalence_complexity/report/report.blg
-circuit_equivalence_complexity/report/report.fdb_latexmk
-circuit_equivalence_complexity/report/report.fls
-circuit_equivalence_complexity/report/report.log
-circuit_equivalence_complexity/report/report.synctex.gz
+report/report.aux
+report/report.bbl
+report/report.blg
+report/report.fdb_latexmk
+report/report.fls
+report/report.log
+report/report.synctex.gz
